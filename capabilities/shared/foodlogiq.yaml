@@ -1,0 +1,313 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Trustwell FoodLogiQ API"
+  description: "Food supply chain management, compliance, quality incidents, traceability, and recall management."
+  tags:
+    - Food Safety
+    - Supply Chain
+    - Traceability
+    - Compliance
+    - Quality Management
+    - Recall Management
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      TRUSTWELL_API_KEY: TRUSTWELL_API_KEY
+
+capability:
+  consumes:
+    - type: http
+      namespace: trustwell-foodlogiq
+      baseUri: https://api.trustwell.com/foodlogiq/v1
+      description: "FoodLogiQ supply chain and food safety API."
+      authentication:
+        type: apikey
+        key: X-API-KEY
+        value: "{{TRUSTWELL_API_KEY}}"
+        placement: header
+      resources:
+        - name: suppliers
+          path: /suppliers
+          description: "Supplier management"
+          operations:
+            - name: list-suppliers
+              method: GET
+              description: "List suppliers in the supply chain network."
+              inputParameters:
+                - name: status
+                  in: query
+                  type: string
+                  required: false
+                - name: page
+                  in: query
+                  type: integer
+                  required: false
+                - name: perPage
+                  in: query
+                  type: integer
+                  required: false
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-supplier
+              method: POST
+              description: "Add a new supplier."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+                  email: "{{tools.email}}"
+        - name: quality-incidents
+          path: /quality/incidents
+          description: "Quality incident management"
+          operations:
+            - name: list-quality-incidents
+              method: GET
+              description: "List quality incidents with status and severity filtering."
+              inputParameters:
+                - name: status
+                  in: query
+                  type: string
+                  required: false
+                - name: severity
+                  in: query
+                  type: string
+                  required: false
+                - name: page
+                  in: query
+                  type: integer
+                  required: false
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-quality-incident
+              method: POST
+              description: "Create a new quality incident report."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  title: "{{tools.title}}"
+                  severity: "{{tools.severity}}"
+        - name: traceability-lots
+          path: /traceability/lots
+          description: "FSMA 204 traceability lot records"
+          operations:
+            - name: list-lots
+              method: GET
+              description: "List traceability lot records for FSMA 204 compliance."
+              inputParameters:
+                - name: productId
+                  in: query
+                  type: string
+                  required: false
+                - name: fromDate
+                  in: query
+                  type: string
+                  required: false
+                - name: toDate
+                  in: query
+                  type: string
+                  required: false
+                - name: page
+                  in: query
+                  type: integer
+                  required: false
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: recalls
+          path: /recalls
+          description: "Recall and withdrawal management"
+          operations:
+            - name: list-recalls
+              method: GET
+              description: "List recall and withdrawal events."
+              inputParameters:
+                - name: status
+                  in: query
+                  type: string
+                  required: false
+                - name: page
+                  in: query
+                  type: integer
+                  required: false
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-recall
+              method: POST
+              description: "Initiate a new recall or withdrawal event."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  title: "{{tools.title}}"
+                  reason: "{{tools.reason}}"
+                  recallType: "{{tools.recallType}}"
+
+  exposes:
+    - type: rest
+      port: 8101
+      namespace: trustwell-foodlogiq-api
+      resources:
+        - path: /v1/suppliers
+          name: suppliers
+          description: "Supplier list"
+          operations:
+            - method: GET
+              name: list-suppliers
+              description: "List suppliers"
+              call: "trustwell-foodlogiq.list-suppliers"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/quality/incidents
+          name: quality-incidents
+          description: "Quality incidents"
+          operations:
+            - method: GET
+              name: list-quality-incidents
+              description: "List quality incidents"
+              call: "trustwell-foodlogiq.list-quality-incidents"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/traceability/lots
+          name: lots
+          description: "Traceability lots"
+          operations:
+            - method: GET
+              name: list-lots
+              description: "List lot records"
+              call: "trustwell-foodlogiq.list-lots"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/recalls
+          name: recalls
+          description: "Recall events"
+          operations:
+            - method: GET
+              name: list-recalls
+              description: "List recalls"
+              call: "trustwell-foodlogiq.list-recalls"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9101
+      namespace: trustwell-foodlogiq-mcp
+      transport: http
+      tools:
+        - name: list-suppliers
+          description: "List food supply chain suppliers with status filtering."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "trustwell-foodlogiq.list-suppliers"
+          with:
+            status: "tools.status"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-supplier
+          description: "Add a new supplier to the supply chain network."
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "trustwell-foodlogiq.create-supplier"
+          with:
+            name: "tools.name"
+            email: "tools.email"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-quality-incidents
+          description: "List quality incidents with severity and status filtering."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "trustwell-foodlogiq.list-quality-incidents"
+          with:
+            status: "tools.status"
+            severity: "tools.severity"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-quality-incident
+          description: "Create a quality incident report for a food safety or supplier issue."
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "trustwell-foodlogiq.create-quality-incident"
+          with:
+            title: "tools.title"
+            severity: "tools.severity"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-lots
+          description: "List FSMA 204-compliant traceability lot records for farm-to-fork tracking."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "trustwell-foodlogiq.list-lots"
+          with:
+            productId: "tools.productId"
+            fromDate: "tools.fromDate"
+            toDate: "tools.toDate"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-recalls
+          description: "List recall and withdrawal events with status filtering."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "trustwell-foodlogiq.list-recalls"
+          with:
+            status: "tools.status"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-recall
+          description: "Initiate a voluntary, mock, or regulatory recall event."
+          hints:
+            readOnly: false
+            destructive: false
+            openWorld: false
+          call: "trustwell-foodlogiq.create-recall"
+          with:
+            title: "tools.title"
+            reason: "tools.reason"
+            recallType: "tools.recallType"
+          outputParameters:
+            - type: object
+              mapping: "$."

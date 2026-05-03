@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.trustwell.com/schemas/quality-incident",
+  "title": "QualityIncident",
+  "description": "A food quality or safety incident report in the Trustwell FoodLogiQ system, capturing issues related to suppliers, products, or production processes.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the quality incident."
+    },
+    "title": {
+      "type": "string",
+      "description": "Short title describing the quality incident."
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed description of the quality issue."
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["critical", "major", "minor", "informational"],
+      "description": "Severity classification of the incident."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["open", "in-progress", "resolved", "closed", "cancelled"],
+      "description": "Current resolution status of the incident."
+    },
+    "incidentType": {
+      "type": "string",
+      "enum": ["allergen", "contamination", "labeling", "packaging", "foreign-material", "pathogen", "process-deviation", "supplier-issue", "other"],
+      "description": "Category of the quality incident."
+    },
+    "supplierId": {
+      "type": "string",
+      "description": "Identifier of the supplier associated with this incident."
+    },
+    "productId": {
+      "type": "string",
+      "description": "Identifier of the affected product."
+    },
+    "lotNumbers": {
+      "type": "array",
+      "description": "Affected lot or batch numbers.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "rootCause": {
+      "type": "string",
+      "description": "Identified root cause of the incident."
+    },
+    "correctiveAction": {
+      "type": "string",
+      "description": "Corrective action taken or planned to address the incident."
+    },
+    "assignedTo": {
+      "type": "string",
+      "description": "User or team responsible for resolving the incident."
+    },
+    "dueDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Target date for resolving the incident."
+    },
+    "resolvedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the incident was resolved."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the incident was reported."
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the incident record was last updated."
+    }
+  },
+  "required": ["id", "title", "severity", "status"]
+}

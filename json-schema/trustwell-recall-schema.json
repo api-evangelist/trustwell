@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.trustwell.com/schemas/recall",
+  "title": "Recall",
+  "description": "A food product recall or withdrawal event in the Trustwell FoodLogiQ system, capturing voluntary, mock, or regulatory recall actions.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the recall event."
+    },
+    "title": {
+      "type": "string",
+      "description": "Short title describing the recall event."
+    },
+    "reason": {
+      "type": "string",
+      "description": "Detailed reason for initiating the recall."
+    },
+    "recallType": {
+      "type": "string",
+      "enum": ["voluntary", "mock", "regulatory", "withdrawal"],
+      "description": "Type of recall action: voluntary (company-initiated), mock (drill), regulatory (FDA/USDA-mandated), or market withdrawal."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "pending", "completed", "cancelled"],
+      "description": "Current status of the recall."
+    },
+    "recallClass": {
+      "type": "string",
+      "enum": ["Class I", "Class II", "Class III"],
+      "description": "FDA recall classification. Class I is the most serious (health hazard). Class II is less serious. Class III is unlikely to cause adverse health."
+    },
+    "productIds": {
+      "type": "array",
+      "description": "Identifiers of products included in this recall.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "lotNumbers": {
+      "type": "array",
+      "description": "Specific lot or batch numbers covered by the recall.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "affectedQuantity": {
+      "type": "number",
+      "description": "Estimated quantity of product affected by the recall."
+    },
+    "affectedUnit": {
+      "type": "string",
+      "description": "Unit of measure for affected quantity (e.g., units, cases, lbs)."
+    },
+    "distributionScope": {
+      "type": "string",
+      "enum": ["local", "regional", "national", "international"],
+      "description": "Geographic scope of product distribution affected."
+    },
+    "supplierId": {
+      "type": "string",
+      "description": "Identifier of the supplier associated with the recalled product."
+    },
+    "regulatoryNotification": {
+      "type": "boolean",
+      "description": "Whether the regulatory agency (FDA/USDA) has been notified."
+    },
+    "publicNotification": {
+      "type": "boolean",
+      "description": "Whether a public press release has been issued."
+    },
+    "completedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the recall was completed."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the recall event was initiated."
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the recall record was last updated."
+    }
+  },
+  "required": ["id", "title", "reason", "recallType", "status"]
+}

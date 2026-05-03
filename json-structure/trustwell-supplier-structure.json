@@ -1,0 +1,42 @@
+{
+  "name": "Supplier",
+  "description": "A food supply chain supplier in the Trustwell FoodLogiQ network.",
+  "fields": [
+    { "name": "id", "type": "string", "required": true, "description": "Unique supplier identifier" },
+    { "name": "name", "type": "string", "required": true, "description": "Legal business name" },
+    { "name": "email", "type": "string(email)", "required": true, "description": "Primary contact email" },
+    { "name": "phone", "type": "string", "required": false, "description": "Primary contact phone number" },
+    { "name": "status", "type": "enum[active,inactive,pending,suspended]", "required": true, "description": "Supplier network status" },
+    { "name": "complianceStatus", "type": "enum[compliant,non-compliant,pending-review,expired]", "required": false, "description": "Compliance certification status" },
+    { "name": "address", "type": "object<Address>", "required": false, "description": "Physical facility address" },
+    { "name": "certifications", "type": "array<Certification>", "required": false, "description": "Food safety certifications" },
+    { "name": "products", "type": "array<string>", "required": false, "description": "Identifiers of supplied products" },
+    { "name": "onboardedAt", "type": "string(date-time)", "required": false, "description": "Network onboarding timestamp" },
+    { "name": "createdAt", "type": "string(date-time)", "required": false, "description": "Record creation timestamp" },
+    { "name": "updatedAt", "type": "string(date-time)", "required": false, "description": "Record last updated timestamp" }
+  ],
+  "nested": [
+    {
+      "name": "Address",
+      "description": "Physical address of the supplier facility.",
+      "fields": [
+        { "name": "street", "type": "string", "required": false, "description": "Street address" },
+        { "name": "city", "type": "string", "required": false, "description": "City" },
+        { "name": "state", "type": "string", "required": false, "description": "State or province code" },
+        { "name": "postalCode", "type": "string", "required": false, "description": "Postal or ZIP code" },
+        { "name": "country", "type": "string", "required": false, "description": "ISO 3166-1 alpha-2 country code" }
+      ]
+    },
+    {
+      "name": "Certification",
+      "description": "A food safety or quality certification.",
+      "fields": [
+        { "name": "type", "type": "string", "required": true, "description": "Certification type (SQF, BRC, GFSI, Organic, Kosher, Halal)" },
+        { "name": "number", "type": "string", "required": false, "description": "Certification number" },
+        { "name": "issuedAt", "type": "string(date)", "required": false, "description": "Issue date" },
+        { "name": "expiresAt", "type": "string(date)", "required": false, "description": "Expiration date" },
+        { "name": "issuingBody", "type": "string", "required": false, "description": "Issuing organization" }
+      ]
+    }
+  ]
+}

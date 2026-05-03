@@ -1,0 +1,50 @@
+{
+  "name": "FoodItem",
+  "description": "A food product formulation record from Trustwell Genesis Foods with nutrient content, allergen declarations, and label data.",
+  "fields": [
+    { "name": "id", "type": "string", "required": true, "description": "Unique food item identifier" },
+    { "name": "name", "type": "string", "required": true, "description": "Food item name" },
+    { "name": "description", "type": "string", "required": false, "description": "Detailed description" },
+    { "name": "servingSize", "type": "number", "required": true, "description": "Serving size quantity" },
+    { "name": "servingUnit", "type": "string", "required": true, "description": "Serving size unit (g, mL, oz)" },
+    { "name": "servingsPerContainer", "type": "number", "required": false, "description": "Servings per container" },
+    { "name": "nutrients", "type": "array<NutrientValue>", "required": false, "description": "Nutrient values per serving" },
+    { "name": "allergens", "type": "array<AllergenDeclaration>", "required": false, "description": "Allergen declarations" },
+    { "name": "ingredients", "type": "string", "required": false, "description": "Ingredients list for labeling" },
+    { "name": "labels", "type": "array<NutritionLabel>", "required": false, "description": "Generated nutrition label images" },
+    { "name": "regulations", "type": "array<string>", "required": false, "description": "Applicable regulatory standards" },
+    { "name": "createdAt", "type": "string(date-time)", "required": false, "description": "Record creation timestamp" },
+    { "name": "updatedAt", "type": "string(date-time)", "required": false, "description": "Record last updated timestamp" }
+  ],
+  "nested": [
+    {
+      "name": "NutrientValue",
+      "description": "A nutrient and its measured value per serving.",
+      "fields": [
+        { "name": "nutrientId", "type": "string", "required": true, "description": "Nutrient definition identifier" },
+        { "name": "name", "type": "string", "required": true, "description": "Nutrient name (e.g., Protein, Sodium)" },
+        { "name": "amount", "type": "number", "required": true, "description": "Amount per serving" },
+        { "name": "unit", "type": "string", "required": true, "description": "Unit of measurement (g, mg, mcg, IU)" },
+        { "name": "dailyValue", "type": "number", "required": false, "description": "Percent daily value (%DV)" }
+      ]
+    },
+    {
+      "name": "AllergenDeclaration",
+      "description": "An allergen presence declaration for a food item.",
+      "fields": [
+        { "name": "allergenId", "type": "string", "required": true, "description": "Allergen definition identifier" },
+        { "name": "name", "type": "string", "required": true, "description": "Allergen name (e.g., Milk, Wheat, Peanuts)" },
+        { "name": "containsStatus", "type": "enum[contains,may-contain,free-from]", "required": true, "description": "Allergen declaration status" }
+      ]
+    },
+    {
+      "name": "NutritionLabel",
+      "description": "A generated nutrition facts label image.",
+      "fields": [
+        { "name": "format", "type": "enum[US,CA,EU,MX,AU]", "required": true, "description": "Regulatory label format" },
+        { "name": "imageUrl", "type": "string(uri)", "required": true, "description": "URL of the generated label image" },
+        { "name": "language", "type": "string", "required": false, "description": "Language code (en, fr, es)" }
+      ]
+    }
+  ]
+}

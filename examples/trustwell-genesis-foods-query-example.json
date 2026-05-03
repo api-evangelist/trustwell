@@ -1,0 +1,50 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.trustwell.com/genesis",
+    "headers": {
+      "X-API-KEY": "YOUR_TRUSTWELL_API_KEY",
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    "body": {
+      "query": "query GetFood($id: ID!) { foods(id: $id) { id name nutrients { name amount unit } allergens { name present } labels { id format imageUrl } } }",
+      "variables": {
+        "id": "food_123abc"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "data": {
+        "foods": {
+          "id": "food_123abc",
+          "name": "Whole Wheat Sandwich Bread",
+          "nutrients": [
+            {"name": "Calories", "amount": 120, "unit": "kcal"},
+            {"name": "Total Fat", "amount": 2.0, "unit": "g"},
+            {"name": "Sodium", "amount": 190, "unit": "mg"},
+            {"name": "Total Carbohydrate", "amount": 23, "unit": "g"},
+            {"name": "Protein", "amount": 4, "unit": "g"}
+          ],
+          "allergens": [
+            {"name": "Wheat", "present": true},
+            {"name": "Soy", "present": true},
+            {"name": "Milk", "present": false}
+          ],
+          "labels": [
+            {
+              "id": "label_456def",
+              "format": "US_NUTRITION_FACTS",
+              "imageUrl": "https://api.trustwell.com/genesis/labels/label_456def/image.png"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

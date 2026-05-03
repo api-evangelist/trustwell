@@ -1,0 +1,91 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "gs1": "https://www.gs1.org/voc/",
+    "foodon": "http://purl.obolibrary.org/obo/FOODON_",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "FoodItem": "schema:Product",
+    "Supplier": "schema:Organization",
+    "QualityIncident": "schema:Event",
+    "Recall": "schema:Event",
+    "NutritionLabel": "schema:NutritionInformation",
+
+    "id": "@id",
+    "name": "schema:name",
+    "description": "schema:description",
+    "email": "schema:email",
+    "phone": "schema:telephone",
+    "status": "schema:status",
+    "createdAt": {
+      "@id": "dcterms:created",
+      "@type": "xsd:dateTime"
+    },
+    "updatedAt": {
+      "@id": "dcterms:modified",
+      "@type": "xsd:dateTime"
+    },
+
+    "servingSize": "schema:servingSize",
+    "servingUnit": "schema:unitText",
+    "servingsPerContainer": "gs1:servingSize",
+    "nutrients": "schema:nutrition",
+    "allergens": "gs1:allergenRelatedInformation",
+    "ingredients": "schema:ingredients",
+    "labels": "schema:image",
+
+    "nutrientId": "@id",
+    "amount": "schema:value",
+    "unit": "schema:unitCode",
+    "dailyValue": "gs1:percentOfDailyValueIntakeReference",
+
+    "allergenId": "@id",
+    "containsStatus": "gs1:levelOfContainment",
+
+    "supplierId": {
+      "@id": "schema:supplier",
+      "@type": "@id"
+    },
+    "productId": {
+      "@id": "schema:productID",
+      "@type": "@id"
+    },
+    "productIds": {
+      "@id": "schema:productID",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "lotNumbers": "gs1:batchLotNumber",
+
+    "severity": "schema:importance",
+    "incidentType": "schema:additionalType",
+    "rootCause": "schema:description",
+    "correctiveAction": "schema:potentialAction",
+    "resolvedAt": {
+      "@id": "schema:endDate",
+      "@type": "xsd:dateTime"
+    },
+
+    "recallType": "schema:additionalType",
+    "recallClass": "schema:category",
+    "distributionScope": "schema:geographicArea",
+    "regulatoryNotification": "schema:isRelatedTo",
+    "publicNotification": "schema:isPartOf",
+
+    "certifications": "schema:hasCredential",
+    "complianceStatus": "schema:status",
+    "address": "schema:address",
+    "street": "schema:streetAddress",
+    "city": "schema:addressLocality",
+    "state": "schema:addressRegion",
+    "postalCode": "schema:postalCode",
+    "country": "schema:addressCountry",
+
+    "regulations": "schema:legislationPassedBy",
+    "format": "schema:encodingFormat",
+    "imageUrl": "schema:url",
+    "language": "schema:inLanguage"
+  }
+}

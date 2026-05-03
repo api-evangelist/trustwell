@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.trustwell.com/schemas/supplier",
+  "title": "Supplier",
+  "description": "A food supply chain supplier in the Trustwell FoodLogiQ network, representing a vendor providing ingredients or products to food manufacturers.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the supplier."
+    },
+    "name": {
+      "type": "string",
+      "description": "Legal business name of the supplier."
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Primary contact email address for the supplier."
+    },
+    "phone": {
+      "type": "string",
+      "description": "Primary contact phone number."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "inactive", "pending", "suspended"],
+      "description": "Current status of the supplier in the network."
+    },
+    "complianceStatus": {
+      "type": "string",
+      "enum": ["compliant", "non-compliant", "pending-review", "expired"],
+      "description": "Compliance certification status of the supplier."
+    },
+    "address": {
+      "$ref": "#/$defs/Address"
+    },
+    "certifications": {
+      "type": "array",
+      "description": "List of food safety and quality certifications held by the supplier.",
+      "items": {
+        "$ref": "#/$defs/Certification"
+      }
+    },
+    "products": {
+      "type": "array",
+      "description": "Identifiers of products supplied by this supplier.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "onboardedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the supplier was onboarded into the network."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the supplier record was created."
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the supplier record was last updated."
+    }
+  },
+  "required": ["id", "name", "email", "status"],
+  "$defs": {
+    "Address": {
+      "type": "object",
+      "description": "Physical address of the supplier facility.",
+      "properties": {
+        "street": {
+          "type": "string",
+          "description": "Street address line."
+        },
+        "city": {
+          "type": "string",
+          "description": "City name."
+        },
+        "state": {
+          "type": "string",
+          "description": "State or province code."
+        },
+        "postalCode": {
+          "type": "string",
+          "description": "Postal or ZIP code."
+        },
+        "country": {
+          "type": "string",
+          "description": "ISO 3166-1 alpha-2 country code."
+        }
+      }
+    },
+    "Certification": {
+      "type": "object",
+      "description": "A food safety or quality certification held by the supplier.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Certification type (e.g., SQF, BRC, GFSI, Organic, Kosher, Halal)."
+        },
+        "number": {
+          "type": "string",
+          "description": "Certification identification number."
+        },
+        "issuedAt": {
+          "type": "string",
+          "format": "date",
+          "description": "Date the certification was issued."
+        },
+        "expiresAt": {
+          "type": "string",
+          "format": "date",
+          "description": "Date the certification expires."
+        },
+        "issuingBody": {
+          "type": "string",
+          "description": "Organization that issued the certification."
+        }
+      },
+      "required": ["type"]
+    }
+  }
+}

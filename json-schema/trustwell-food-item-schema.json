@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.trustwell.com/schemas/food-item",
+  "title": "FoodItem",
+  "description": "A food product formulation record from Trustwell Genesis Foods, including nutrient content, allergen declarations, and label information.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the food item."
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the food item."
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed description of the food item."
+    },
+    "servingSize": {
+      "type": "number",
+      "description": "Serving size quantity."
+    },
+    "servingUnit": {
+      "type": "string",
+      "description": "Unit of measure for serving size (e.g., g, mL, oz)."
+    },
+    "servingsPerContainer": {
+      "type": "number",
+      "description": "Number of servings per container."
+    },
+    "nutrients": {
+      "type": "array",
+      "description": "List of nutrient values for this food item.",
+      "items": {
+        "$ref": "#/$defs/NutrientValue"
+      }
+    },
+    "allergens": {
+      "type": "array",
+      "description": "List of allergens present or may be present in this food item.",
+      "items": {
+        "$ref": "#/$defs/AllergenDeclaration"
+      }
+    },
+    "ingredients": {
+      "type": "string",
+      "description": "Ingredients list as it appears on the label."
+    },
+    "labels": {
+      "type": "array",
+      "description": "Generated nutrition label images for various regulatory formats.",
+      "items": {
+        "$ref": "#/$defs/NutritionLabel"
+      }
+    },
+    "regulations": {
+      "type": "array",
+      "description": "Applicable regulatory standards for this food item.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the food item record was created."
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the food item record was last updated."
+    }
+  },
+  "required": ["id", "name", "servingSize", "servingUnit"],
+  "$defs": {
+    "NutrientValue": {
+      "type": "object",
+      "description": "A nutrient and its measured value for a food item.",
+      "properties": {
+        "nutrientId": {
+          "type": "string",
+          "description": "Unique identifier for the nutrient definition."
+        },
+        "name": {
+          "type": "string",
+          "description": "Nutrient name (e.g., Protein, Total Fat, Sodium)."
+        },
+        "amount": {
+          "type": "number",
+          "description": "Amount of the nutrient per serving."
+        },
+        "unit": {
+          "type": "string",
+          "description": "Unit of measurement (e.g., g, mg, mcg, IU)."
+        },
+        "dailyValue": {
+          "type": "number",
+          "description": "Percent daily value based on a 2000-calorie diet."
+        }
+      },
+      "required": ["nutrientId", "name", "amount", "unit"]
+    },
+    "AllergenDeclaration": {
+      "type": "object",
+      "description": "An allergen declaration for a food item.",
+      "properties": {
+        "allergenId": {
+          "type": "string",
+          "description": "Unique identifier for the allergen definition."
+        },
+        "name": {
+          "type": "string",
+          "description": "Allergen name (e.g., Milk, Wheat, Peanuts, Tree Nuts)."
+        },
+        "containsStatus": {
+          "type": "string",
+          "enum": ["contains", "may-contain", "free-from"],
+          "description": "Declaration status for this allergen."
+        }
+      },
+      "required": ["allergenId", "name", "containsStatus"]
+    },
+    "NutritionLabel": {
+      "type": "object",
+      "description": "A generated nutrition facts label image for a regulatory format.",
+      "properties": {
+        "format": {
+          "type": "string",
+          "enum": ["US", "CA", "EU", "MX", "AU"],
+          "description": "Regulatory format for the nutrition label."
+        },
+        "imageUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to the generated nutrition label image."
+        },
+        "language": {
+          "type": "string",
+          "description": "Language code for the label (e.g., en, fr, es)."
+        }
+      },
+      "required": ["format", "imageUrl"]
+    }
+  }
+}

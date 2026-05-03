@@ -1,0 +1,192 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Trustwell Genesis Foods GraphQL API"
+  description: "Food formulation, nutrition analysis, label generation, and regulatory compliance for food manufacturers."
+  tags:
+    - Food Formulation
+    - Nutrition Labeling
+    - Regulatory Compliance
+    - Food Industry
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      TRUSTWELL_API_KEY: TRUSTWELL_API_KEY
+
+capability:
+  consumes:
+    - type: http
+      namespace: trustwell-genesis
+      baseUri: https://api.trustwell.com/genesis
+      description: "Genesis Foods GraphQL API for food formulation and labeling."
+      authentication:
+        type: apikey
+        key: X-API-KEY
+        value: "{{TRUSTWELL_API_KEY}}"
+        placement: header
+      resources:
+        - name: foods
+          path: /
+          description: "Food formulation and analysis via GraphQL"
+          operations:
+            - name: query-foods
+              method: POST
+              description: "Query food items with nutrients, allergens, and label data."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  query: "{{tools.query}}"
+                  variables: "{{tools.variables}}"
+            - name: query-nutrients
+              method: POST
+              description: "Query standard and custom nutrient definitions."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  query: "{ nutrients { id name unit } }"
+            - name: query-allergens
+              method: POST
+              description: "Query allergen data and standard allergens."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  query: "{ allergens { id name } }"
+            - name: query-labels
+              method: POST
+              description: "Query label information and generate label images."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  query: "{{tools.labelQuery}}"
+                  variables: "{{tools.variables}}"
+            - name: query-regulations
+              method: POST
+              description: "Query regulatory data, authorities, and nutrition claims."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  query: "{ regulations { id name authority country } }"
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: trustwell-genesis-api
+      resources:
+        - path: /v1/foods/query
+          name: foods
+          description: "Query food formulation data"
+          operations:
+            - method: POST
+              name: query-foods
+              description: "Query food items"
+              call: "trustwell-genesis.query-foods"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/nutrients
+          name: nutrients
+          description: "Get nutrients list"
+          operations:
+            - method: GET
+              name: query-nutrients
+              description: "List nutrients"
+              call: "trustwell-genesis.query-nutrients"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/allergens
+          name: allergens
+          description: "Get allergens list"
+          operations:
+            - method: GET
+              name: query-allergens
+              description: "List allergens"
+              call: "trustwell-genesis.query-allergens"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: trustwell-genesis-mcp
+      transport: http
+      tools:
+        - name: query-foods
+          description: "Query food items from Genesis Foods including nutrients, allergens, and label information."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "trustwell-genesis.query-foods"
+          with:
+            query: "tools.query"
+            variables: "tools.variables"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: query-nutrients
+          description: "Get all standard and custom nutrient definitions including names and measurement units."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "trustwell-genesis.query-nutrients"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: query-allergens
+          description: "Get all allergen definitions from Genesis Foods database."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "trustwell-genesis.query-allergens"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: query-labels
+          description: "Query and generate nutrition label images for food products."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "trustwell-genesis.query-labels"
+          with:
+            labelQuery: "tools.labelQuery"
+            variables: "tools.variables"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: query-regulations
+          description: "Query regulatory standards and nutrition claim requirements by country and authority."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "trustwell-genesis.query-regulations"
+          outputParameters:
+            - type: object
+              mapping: "$."

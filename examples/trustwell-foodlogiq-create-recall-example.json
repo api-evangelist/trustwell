@@ -1,0 +1,32 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.trustwell.com/foodlogiq/v1/recalls",
+    "headers": {
+      "X-API-KEY": "YOUR_TRUSTWELL_API_KEY",
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    "body": {
+      "title": "Allergen Undeclared - Wheat in Granola Bar Batch",
+      "reason": "Undeclared wheat allergen detected in Batch #2026-04-789 due to mislabeling by supplier.",
+      "recallType": "voluntary",
+      "productIds": ["prod_granola_bar_1oz", "prod_granola_bar_2oz"]
+    }
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "id": "recall_xyz999",
+      "title": "Allergen Undeclared - Wheat in Granola Bar Batch",
+      "reason": "Undeclared wheat allergen detected in Batch #2026-04-789 due to mislabeling by supplier.",
+      "recallType": "voluntary",
+      "status": "active",
+      "productIds": ["prod_granola_bar_1oz", "prod_granola_bar_2oz"],
+      "createdAt": "2026-05-03T10:00:00Z"
+    }
+  }
+}

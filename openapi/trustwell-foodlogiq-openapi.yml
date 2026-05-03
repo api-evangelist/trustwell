@@ -1,0 +1,557 @@
+openapi: 3.0.3
+info:
+  title: Trustwell FoodLogiQ API
+  description: >-
+    Open REST API for food supply chain management, compliance, quality assurance,
+    traceability (FSMA 204), and recall management. Enables enterprise food brands
+    to integrate supply chain data with ERP, WMS, and third-party systems.
+  version: 1.0.0
+  contact:
+    url: https://www.trustwell.com/products/foodlogiq/
+  termsOfService: https://www.trustwell.com/terms-of-service/
+servers:
+  - url: https://api.trustwell.com/foodlogiq/v1
+    description: Production
+tags:
+  - name: Suppliers
+    description: Supplier relationship management
+  - name: Compliance
+    description: Compliance documentation and requirements
+  - name: Quality
+    description: Quality incident management
+  - name: Products
+    description: Product specification management
+  - name: Traceability
+    description: Farm-to-fork traceability (FSMA 204)
+  - name: Recalls
+    description: Recall and withdrawal management
+paths:
+  /suppliers:
+    get:
+      operationId: listSuppliers
+      summary: List Suppliers
+      description: Retrieve a list of suppliers in the supply chain network.
+      tags:
+        - Suppliers
+      security:
+        - ApiKey: []
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [active, inactive, pending]
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - name: perPage
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: Suppliers returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupplierListResponse'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createSupplier
+      summary: Create Supplier
+      description: Add a new supplier to the supply chain network.
+      tags:
+        - Suppliers
+      security:
+        - ApiKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SupplierInput'
+      responses:
+        '201':
+          description: Supplier created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Supplier'
+  /suppliers/{supplierId}:
+    get:
+      operationId: getSupplier
+      summary: Get Supplier
+      description: Retrieve details for a specific supplier.
+      tags:
+        - Suppliers
+      security:
+        - ApiKey: []
+      parameters:
+        - name: supplierId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Supplier details returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Supplier'
+        '404':
+          description: Supplier not found
+    put:
+      operationId: updateSupplier
+      summary: Update Supplier
+      description: Update supplier information.
+      tags:
+        - Suppliers
+      security:
+        - ApiKey: []
+      parameters:
+        - name: supplierId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SupplierInput'
+      responses:
+        '200':
+          description: Supplier updated
+  /compliance/documents:
+    get:
+      operationId: listComplianceDocuments
+      summary: List Compliance Documents
+      description: Retrieve compliance documents submitted by suppliers.
+      tags:
+        - Compliance
+      security:
+        - ApiKey: []
+      parameters:
+        - name: supplierId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: documentType
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [pending, approved, rejected, expired]
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: perPage
+          in: query
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Compliance documents returned
+  /quality/incidents:
+    get:
+      operationId: listQualityIncidents
+      summary: List Quality Incidents
+      description: Retrieve quality incidents with filtering options.
+      tags:
+        - Quality
+      security:
+        - ApiKey: []
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [open, in_progress, resolved, closed]
+        - name: severity
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [low, medium, high, critical]
+        - name: supplierId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: perPage
+          in: query
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Quality incidents returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QualityIncidentListResponse'
+    post:
+      operationId: createQualityIncident
+      summary: Create Quality Incident
+      description: Create a new quality incident report.
+      tags:
+        - Quality
+      security:
+        - ApiKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QualityIncidentInput'
+      responses:
+        '201':
+          description: Quality incident created
+  /quality/incidents/{incidentId}:
+    get:
+      operationId: getQualityIncident
+      summary: Get Quality Incident
+      description: Retrieve details for a specific quality incident.
+      tags:
+        - Quality
+      security:
+        - ApiKey: []
+      parameters:
+        - name: incidentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Quality incident returned
+  /products:
+    get:
+      operationId: listProducts
+      summary: List Products
+      description: Retrieve product specifications in the system.
+      tags:
+        - Products
+      security:
+        - ApiKey: []
+      parameters:
+        - name: supplierId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: perPage
+          in: query
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Products returned
+    post:
+      operationId: createProduct
+      summary: Create Product
+      description: Create a new product specification record.
+      tags:
+        - Products
+      security:
+        - ApiKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductInput'
+      responses:
+        '201':
+          description: Product created
+  /traceability/lots:
+    get:
+      operationId: listLots
+      summary: List Lots
+      description: Retrieve traceability lot records for FSMA 204 compliance.
+      tags:
+        - Traceability
+      security:
+        - ApiKey: []
+      parameters:
+        - name: productId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: supplierId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: fromDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: toDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: perPage
+          in: query
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Lot records returned
+  /traceability/lots/{lotId}:
+    get:
+      operationId: getLot
+      summary: Get Lot
+      description: Retrieve traceability details for a specific lot.
+      tags:
+        - Traceability
+      security:
+        - ApiKey: []
+      parameters:
+        - name: lotId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Lot details returned
+  /recalls:
+    get:
+      operationId: listRecalls
+      summary: List Recalls
+      description: Retrieve recall and withdrawal events.
+      tags:
+        - Recalls
+      security:
+        - ApiKey: []
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [active, mock, completed, archived]
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: perPage
+          in: query
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Recalls returned
+    post:
+      operationId: createRecall
+      summary: Create Recall
+      description: Initiate a new recall or withdrawal event.
+      tags:
+        - Recalls
+      security:
+        - ApiKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecallInput'
+      responses:
+        '201':
+          description: Recall event created
+  /recalls/{recallId}:
+    get:
+      operationId: getRecall
+      summary: Get Recall
+      description: Retrieve details and progress for a specific recall event.
+      tags:
+        - Recalls
+      security:
+        - ApiKey: []
+      parameters:
+        - name: recallId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Recall details returned
+components:
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      in: header
+      name: X-API-KEY
+  schemas:
+    SupplierListResponse:
+      type: object
+      properties:
+        suppliers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Supplier'
+        total:
+          type: integer
+        page:
+          type: integer
+    Supplier:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        status:
+          type: string
+          enum: [active, inactive, pending]
+        email:
+          type: string
+          format: email
+        countryCode:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    SupplierInput:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        countryCode:
+          type: string
+      required:
+        - name
+    QualityIncidentListResponse:
+      type: object
+      properties:
+        incidents:
+          type: array
+          items:
+            $ref: '#/components/schemas/QualityIncident'
+        total:
+          type: integer
+    QualityIncident:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum: [open, in_progress, resolved, closed]
+        severity:
+          type: string
+          enum: [low, medium, high, critical]
+        supplierId:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        resolvedAt:
+          type: string
+          format: date-time
+    QualityIncidentInput:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        severity:
+          type: string
+          enum: [low, medium, high, critical]
+        supplierId:
+          type: string
+      required:
+        - title
+        - severity
+    ProductInput:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        supplierId:
+          type: string
+        sku:
+          type: string
+      required:
+        - name
+    RecallInput:
+      type: object
+      properties:
+        title:
+          type: string
+        reason:
+          type: string
+        recallType:
+          type: string
+          enum: [voluntary, mock, regulatory]
+        productIds:
+          type: array
+          items:
+            type: string
+      required:
+        - title
+        - reason
+        - recallType

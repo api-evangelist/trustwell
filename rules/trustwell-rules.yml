@@ -1,0 +1,97 @@
+extends: spectral:oas
+rules:
+  trustwell-operation-ids-camel-case:
+    description: Trustwell operation IDs must use camelCase format.
+    severity: warn
+    given: "$.paths.*[get,post,put,patch,delete]"
+    then:
+      field: operationId
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  trustwell-versioned-paths:
+    description: Trustwell API paths should be versioned with /v1/ prefix.
+    severity: warn
+    given: "$.paths"
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        match: "^/v[0-9]/"
+
+  trustwell-api-key-security:
+    description: All Trustwell API endpoints must require X-API-KEY authentication.
+    severity: error
+    given: "$.paths.*[get,post,put,patch,delete]"
+    then:
+      field: security
+      function: truthy
+
+  trustwell-domain-prefix-paths:
+    description: Trustwell FoodLogiQ paths must use domain-specific prefixes for clarity.
+    severity: info
+    given: "$.paths"
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        match: "^/v[0-9]/(suppliers|compliance|quality|products|traceability|recalls)"
+
+  trustwell-operations-tagged:
+    description: All Trustwell operations must have tags.
+    severity: warn
+    given: "$.paths.*[get,post,put,patch,delete]"
+    then:
+      field: tags
+      function: truthy
+
+  trustwell-response-200-json:
+    description: GET operations must include a 200 response with JSON content.
+    severity: warn
+    given: "$.paths.*[get].responses.200"
+    then:
+      field: content.application/json
+      function: truthy
+
+  trustwell-post-201-response:
+    description: POST creation operations should return 201 status.
+    severity: info
+    given: "$.paths.*[post]"
+    then:
+      field: responses.201
+      function: truthy
+
+  trustwell-date-time-format:
+    description: Date/time fields must use date-time format.
+    severity: warn
+    given: "$.components.schemas.*.properties[createdAt,updatedAt,resolvedAt]"
+    then:
+      field: format
+      function: enumeration
+      functionOptions:
+        values:
+          - date-time
+
+  trustwell-id-string-type:
+    description: Identifier fields (id, supplierId, etc.) must be string type.
+    severity: warn
+    given: "$.components.schemas.*.properties[id,supplierId,productId,incidentId,recallId]"
+    then:
+      field: type
+      function: enumeration
+      functionOptions:
+        values:
+          - string
+
+  trustwell-pagination-params:
+    description: Collection endpoints should support page and perPage pagination.
+    severity: info
+    given: "$.paths.*[get]"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          properties:
+            parameters:
+              type: array

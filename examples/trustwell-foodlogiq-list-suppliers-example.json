@@ -1,0 +1,40 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.trustwell.com/foodlogiq/v1/suppliers?status=active&perPage=10",
+    "headers": {
+      "X-API-KEY": "YOUR_TRUSTWELL_API_KEY",
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "suppliers": [
+        {
+          "id": "supp_aaa111",
+          "name": "Pacific Northwest Growers",
+          "status": "active",
+          "email": "compliance@pnwgrowers.com",
+          "countryCode": "US",
+          "createdAt": "2024-01-15T10:00:00Z",
+          "updatedAt": "2026-03-01T08:30:00Z"
+        },
+        {
+          "id": "supp_bbb222",
+          "name": "Midwest Grain Cooperative",
+          "status": "active",
+          "email": "quality@midwestgrain.com",
+          "countryCode": "US",
+          "createdAt": "2023-08-22T14:00:00Z",
+          "updatedAt": "2026-01-18T09:00:00Z"
+        }
+      ],
+      "total": 47,
+      "page": 1
+    }
+  }
+}
