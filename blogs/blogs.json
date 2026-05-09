@@ -3,11 +3,11 @@
   "feeds": [
     {
       "source": "https://blog.trustwell.com/",
-      "feed_url": "https://www.trustwell.com/feed/",
-      "saved": 10,
-      "title": "Trustwell"
+      "feed_url": "https://blog.trustwell.com/atom.xml",
+      "title": "Trustwell Blog",
+      "saved": 0
     }
   ],
   "post_count": 10,
-  "fetched": "2026-05-03T23:37:40Z"
+  "fetched": "2026-05-09T20:17:51Z"
 }
