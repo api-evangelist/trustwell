@@ -1,0 +1,130 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Trustwell FoodLogiQ API — Products
+  description: 'Trustwell FoodLogiQ API — Products. 2 operations. Lead operation: List Products. Self-contained Naftiko capability
+    covering one Trustwell business surface.'
+  tags:
+  - Trustwell
+  - Products
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TRUSTWELL_API_KEY: TRUSTWELL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: foodlogiq-products
+    baseUri: https://api.trustwell.com/foodlogiq/v1
+    description: Trustwell FoodLogiQ API — Products business capability. Self-contained, no shared references.
+    resources:
+    - name: products
+      path: /products
+      operations:
+      - name: listproducts
+        method: GET
+        description: List Products
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: supplierId
+          in: query
+          type: string
+        - name: status
+          in: query
+          type: string
+        - name: page
+          in: query
+          type: integer
+        - name: perPage
+          in: query
+          type: integer
+      - name: createproduct
+        method: POST
+        description: Create Product
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: X-API-KEY
+      value: '{{env.TRUSTWELL_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: foodlogiq-products-rest
+    port: 8080
+    description: REST adapter for Trustwell FoodLogiQ API — Products. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/products
+      name: products
+      description: REST surface for products.
+      operations:
+      - method: GET
+        name: listproducts
+        description: List Products
+        call: foodlogiq-products.listproducts
+        with:
+          supplierId: rest.supplierId
+          status: rest.status
+          page: rest.page
+          perPage: rest.perPage
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createproduct
+        description: Create Product
+        call: foodlogiq-products.createproduct
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: foodlogiq-products-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Trustwell FoodLogiQ API — Products. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-products
+      description: List Products
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: foodlogiq-products.listproducts
+      with:
+        supplierId: tools.supplierId
+        status: tools.status
+        page: tools.page
+        perPage: tools.perPage
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-product
+      description: Create Product
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: foodlogiq-products.createproduct
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

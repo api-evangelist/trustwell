@@ -1,0 +1,100 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Trustwell FoodLogiQ API — Compliance
+  description: 'Trustwell FoodLogiQ API — Compliance. 1 operations. Lead operation: List Compliance Documents. Self-contained
+    Naftiko capability covering one Trustwell business surface.'
+  tags:
+  - Trustwell
+  - Compliance
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TRUSTWELL_API_KEY: TRUSTWELL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: foodlogiq-compliance
+    baseUri: https://api.trustwell.com/foodlogiq/v1
+    description: Trustwell FoodLogiQ API — Compliance business capability. Self-contained, no shared references.
+    resources:
+    - name: compliance-documents
+      path: /compliance/documents
+      operations:
+      - name: listcompliancedocuments
+        method: GET
+        description: List Compliance Documents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: supplierId
+          in: query
+          type: string
+        - name: documentType
+          in: query
+          type: string
+        - name: status
+          in: query
+          type: string
+        - name: page
+          in: query
+          type: integer
+        - name: perPage
+          in: query
+          type: integer
+    authentication:
+      type: apikey
+      key: X-API-KEY
+      value: '{{env.TRUSTWELL_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: foodlogiq-compliance-rest
+    port: 8080
+    description: REST adapter for Trustwell FoodLogiQ API — Compliance. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/compliance/documents
+      name: compliance-documents
+      description: REST surface for compliance-documents.
+      operations:
+      - method: GET
+        name: listcompliancedocuments
+        description: List Compliance Documents
+        call: foodlogiq-compliance.listcompliancedocuments
+        with:
+          supplierId: rest.supplierId
+          documentType: rest.documentType
+          status: rest.status
+          page: rest.page
+          perPage: rest.perPage
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: foodlogiq-compliance-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Trustwell FoodLogiQ API — Compliance. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-compliance-documents
+      description: List Compliance Documents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: foodlogiq-compliance.listcompliancedocuments
+      with:
+        supplierId: tools.supplierId
+        documentType: tools.documentType
+        status: tools.status
+        page: tools.page
+        perPage: tools.perPage
+      outputParameters:
+      - type: object
+        mapping: $.
