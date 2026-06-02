@@ -2,13 +2,20 @@
   "repo": "trustwell",
   "feeds": [
     {
-      "source": "https://blog.trustwell.com/",
+      "source": "https://blog.trustwell.com/atom.xml",
       "feed_url": "https://blog.trustwell.com/atom.xml",
-      "title": "Trustwell Blog",
+      "title": "",
       "saved": 0,
-      "last_error": "http_404"
+      "method": "feed"
+    },
+    {
+      "source": "https://blog.trustwell.com/",
+      "feed_url": "https://www.trustwell.com/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
     }
   ],
-  "post_count": 10,
-  "fetched": "2026-05-17T20:20:35Z"
+  "post_count": 19,
+  "fetched": "2026-06-01T23:35:02Z"
 }
