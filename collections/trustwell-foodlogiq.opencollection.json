@@ -1,0 +1,510 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Trustwell FoodLogiQ API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Suppliers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Suppliers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trustwell.com/foodlogiq/v1/suppliers",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-KEY",
+              "value": "{{X-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve a list of suppliers in the supply chain network."
+        },
+        {
+          "info": {
+            "name": "Create Supplier",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trustwell.com/foodlogiq/v1/suppliers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-KEY",
+              "value": "{{X-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Add a new supplier to the supply chain network."
+        },
+        {
+          "info": {
+            "name": "Get Supplier",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trustwell.com/foodlogiq/v1/suppliers/:supplierId",
+            "params": [
+              {
+                "name": "supplierId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-KEY",
+              "value": "{{X-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve details for a specific supplier."
+        },
+        {
+          "info": {
+            "name": "Update Supplier",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.trustwell.com/foodlogiq/v1/suppliers/:supplierId",
+            "params": [
+              {
+                "name": "supplierId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-KEY",
+              "value": "{{X-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update supplier information."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Compliance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Compliance Documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trustwell.com/foodlogiq/v1/compliance/documents",
+            "params": [
+              {
+                "name": "supplierId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "documentType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-KEY",
+              "value": "{{X-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve compliance documents submitted by suppliers."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Quality",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Quality Incidents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trustwell.com/foodlogiq/v1/quality/incidents",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "supplierId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-KEY",
+              "value": "{{X-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve quality incidents with filtering options."
+        },
+        {
+          "info": {
+            "name": "Create Quality Incident",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trustwell.com/foodlogiq/v1/quality/incidents",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-KEY",
+              "value": "{{X-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a new quality incident report."
+        },
+        {
+          "info": {
+            "name": "Get Quality Incident",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trustwell.com/foodlogiq/v1/quality/incidents/:incidentId",
+            "params": [
+              {
+                "name": "incidentId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-KEY",
+              "value": "{{X-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve details for a specific quality incident."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Products",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trustwell.com/foodlogiq/v1/products",
+            "params": [
+              {
+                "name": "supplierId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-KEY",
+              "value": "{{X-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve product specifications in the system."
+        },
+        {
+          "info": {
+            "name": "Create Product",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trustwell.com/foodlogiq/v1/products",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-KEY",
+              "value": "{{X-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a new product specification record."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Traceability",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Lots",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trustwell.com/foodlogiq/v1/traceability/lots",
+            "params": [
+              {
+                "name": "productId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "supplierId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fromDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "toDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-KEY",
+              "value": "{{X-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve traceability lot records for FSMA 204 compliance."
+        },
+        {
+          "info": {
+            "name": "Get Lot",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trustwell.com/foodlogiq/v1/traceability/lots/:lotId",
+            "params": [
+              {
+                "name": "lotId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-KEY",
+              "value": "{{X-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve traceability details for a specific lot."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Recalls",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Recalls",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trustwell.com/foodlogiq/v1/recalls",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-KEY",
+              "value": "{{X-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve recall and withdrawal events."
+        },
+        {
+          "info": {
+            "name": "Create Recall",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trustwell.com/foodlogiq/v1/recalls",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-KEY",
+              "value": "{{X-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Initiate a new recall or withdrawal event."
+        },
+        {
+          "info": {
+            "name": "Get Recall",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trustwell.com/foodlogiq/v1/recalls/:recallId",
+            "params": [
+              {
+                "name": "recallId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-KEY",
+              "value": "{{X-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve details and progress for a specific recall event."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

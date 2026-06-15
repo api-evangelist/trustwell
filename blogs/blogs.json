@@ -9,6 +9,13 @@
       "method": "feed"
     },
     {
+      "source": "https://www.trustwell.com/feed/",
+      "feed_url": "https://www.trustwell.com/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
       "source": "https://blog.trustwell.com/",
       "feed_url": "https://www.trustwell.com/feed/",
       "title": "",
@@ -16,6 +23,6 @@
       "method": "discovered"
     }
   ],
-  "post_count": 19,
-  "fetched": "2026-06-01T23:35:02Z"
+  "post_count": 20,
+  "fetched": "2026-06-14T20:42:17Z"
 }
