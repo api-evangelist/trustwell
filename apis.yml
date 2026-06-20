@@ -11,7 +11,7 @@ description: >-
   Both APIs require X-API-KEY authentication. The platform serves food manufacturers, retailers, restaurants, and
   distributors across the global food supply chain.
 type: Index
-image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
 - Food Industry
 - Food Safety
@@ -33,7 +33,7 @@ apis:
   - Nutrition Labeling
   - Regulatory Compliance
   - Food Industry
-  image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   baseURL: https://api.trustwell.com/genesis
   humanURL: https://docs.trustwell.com/genesis/api/
   properties:
@@ -61,7 +61,7 @@ apis:
   - Quality Management
   - Recall Management
   - Food Industry
-  image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   baseURL: https://api.trustwell.com/foodlogiq
   humanURL: https://www.trustwell.com/products/foodlogiq/
   properties:
@@ -86,7 +86,7 @@ apis:
   - Nutrition Labeling
   - Regulatory Compliance
   - Food Industry
-  image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   baseURL: https://api.trustwell.com/genesis
   humanURL: https://www.trustwell.com/products/genesis/
   properties:
