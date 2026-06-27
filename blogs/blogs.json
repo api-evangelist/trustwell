@@ -2,17 +2,10 @@
   "repo": "trustwell",
   "feeds": [
     {
-      "source": "https://blog.trustwell.com/atom.xml",
-      "feed_url": "https://blog.trustwell.com/atom.xml",
+      "source": "https://blog.trustwell.com/rss.xml",
+      "feed_url": "https://blog.trustwell.com/rss.xml",
       "title": "",
-      "saved": 0,
-      "method": "feed"
-    },
-    {
-      "source": "https://www.trustwell.com/feed/",
-      "feed_url": "https://www.trustwell.com/feed/",
-      "title": "",
-      "saved": 0,
+      "saved": 2,
       "method": "feed"
     },
     {
@@ -23,6 +16,6 @@
       "method": "discovered"
     }
   ],
-  "post_count": 20,
-  "fetched": "2026-06-14T20:42:17Z"
+  "post_count": 23,
+  "fetched": "2026-06-27T12:03:07Z"
 }
