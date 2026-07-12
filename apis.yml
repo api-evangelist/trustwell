@@ -100,6 +100,12 @@ apis:
     generation, ingredient declaration, allergen statements, and compliance with FDA dietary supplement regulations.
     The API enables integration of supplement formulation data into ERP and PLM systems.
 common:
+- type: TrustCenter
+  url: security/trustwell-trust-center.yml
+- type: DomainSecurity
+  url: security/trustwell-domain-security.yml
+- type: Authentication
+  url: authentication/trustwell-authentication.yml
 - url: https://www.trustwell.com/
   name: Trustwell Website
   type: Website
