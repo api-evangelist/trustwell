@@ -1,0 +1,177 @@
+openapi: 3.0.3
+info:
+  title: Trustwell FoodLogiQ Compliance Suppliers API
+  description: Open REST API for food supply chain management, compliance, quality assurance, traceability (FSMA 204), and recall management. Enables enterprise food brands to integrate supply chain data with ERP, WMS, and third-party systems.
+  version: 1.0.0
+  contact:
+    url: https://www.trustwell.com/products/foodlogiq/
+  termsOfService: https://www.trustwell.com/terms-of-service/
+servers:
+- url: https://api.trustwell.com/foodlogiq/v1
+  description: Production
+tags:
+- name: Suppliers
+  description: Supplier relationship management
+paths:
+  /suppliers:
+    get:
+      operationId: listSuppliers
+      summary: List Suppliers
+      description: Retrieve a list of suppliers in the supply chain network.
+      tags:
+      - Suppliers
+      security:
+      - ApiKey: []
+      parameters:
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - active
+          - inactive
+          - pending
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 1
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 20
+      responses:
+        '200':
+          description: Suppliers returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupplierListResponse'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createSupplier
+      summary: Create Supplier
+      description: Add a new supplier to the supply chain network.
+      tags:
+      - Suppliers
+      security:
+      - ApiKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SupplierInput'
+      responses:
+        '201':
+          description: Supplier created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Supplier'
+  /suppliers/{supplierId}:
+    get:
+      operationId: getSupplier
+      summary: Get Supplier
+      description: Retrieve details for a specific supplier.
+      tags:
+      - Suppliers
+      security:
+      - ApiKey: []
+      parameters:
+      - name: supplierId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Supplier details returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Supplier'
+        '404':
+          description: Supplier not found
+    put:
+      operationId: updateSupplier
+      summary: Update Supplier
+      description: Update supplier information.
+      tags:
+      - Suppliers
+      security:
+      - ApiKey: []
+      parameters:
+      - name: supplierId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SupplierInput'
+      responses:
+        '200':
+          description: Supplier updated
+components:
+  schemas:
+    SupplierListResponse:
+      type: object
+      properties:
+        suppliers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Supplier'
+        total:
+          type: integer
+        page:
+          type: integer
+    SupplierInput:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        countryCode:
+          type: string
+      required:
+      - name
+    Supplier:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
+          - pending
+        email:
+          type: string
+          format: email
+        countryCode:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      in: header
+      name: X-API-KEY

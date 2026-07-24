@@ -1,0 +1,168 @@
+openapi: 3.0.3
+info:
+  title: Trustwell FoodLogiQ Compliance Quality API
+  description: Open REST API for food supply chain management, compliance, quality assurance, traceability (FSMA 204), and recall management. Enables enterprise food brands to integrate supply chain data with ERP, WMS, and third-party systems.
+  version: 1.0.0
+  contact:
+    url: https://www.trustwell.com/products/foodlogiq/
+  termsOfService: https://www.trustwell.com/terms-of-service/
+servers:
+- url: https://api.trustwell.com/foodlogiq/v1
+  description: Production
+tags:
+- name: Quality
+  description: Quality incident management
+paths:
+  /quality/incidents:
+    get:
+      operationId: listQualityIncidents
+      summary: List Quality Incidents
+      description: Retrieve quality incidents with filtering options.
+      tags:
+      - Quality
+      security:
+      - ApiKey: []
+      parameters:
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - open
+          - in_progress
+          - resolved
+          - closed
+      - name: severity
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+          - critical
+      - name: supplierId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Quality incidents returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QualityIncidentListResponse'
+    post:
+      operationId: createQualityIncident
+      summary: Create Quality Incident
+      description: Create a new quality incident report.
+      tags:
+      - Quality
+      security:
+      - ApiKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QualityIncidentInput'
+      responses:
+        '201':
+          description: Quality incident created
+  /quality/incidents/{incidentId}:
+    get:
+      operationId: getQualityIncident
+      summary: Get Quality Incident
+      description: Retrieve details for a specific quality incident.
+      tags:
+      - Quality
+      security:
+      - ApiKey: []
+      parameters:
+      - name: incidentId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Quality incident returned
+components:
+  schemas:
+    QualityIncident:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+          - open
+          - in_progress
+          - resolved
+          - closed
+        severity:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+          - critical
+        supplierId:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        resolvedAt:
+          type: string
+          format: date-time
+    QualityIncidentInput:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        severity:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+          - critical
+        supplierId:
+          type: string
+      required:
+      - title
+      - severity
+    QualityIncidentListResponse:
+      type: object
+      properties:
+        incidents:
+          type: array
+          items:
+            $ref: '#/components/schemas/QualityIncident'
+        total:
+          type: integer
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      in: header
+      name: X-API-KEY

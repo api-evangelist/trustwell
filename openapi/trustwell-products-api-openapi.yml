@@ -1,0 +1,85 @@
+openapi: 3.0.3
+info:
+  title: Trustwell FoodLogiQ Compliance Products API
+  description: Open REST API for food supply chain management, compliance, quality assurance, traceability (FSMA 204), and recall management. Enables enterprise food brands to integrate supply chain data with ERP, WMS, and third-party systems.
+  version: 1.0.0
+  contact:
+    url: https://www.trustwell.com/products/foodlogiq/
+  termsOfService: https://www.trustwell.com/terms-of-service/
+servers:
+- url: https://api.trustwell.com/foodlogiq/v1
+  description: Production
+tags:
+- name: Products
+  description: Product specification management
+paths:
+  /products:
+    get:
+      operationId: listProducts
+      summary: List Products
+      description: Retrieve product specifications in the system.
+      tags:
+      - Products
+      security:
+      - ApiKey: []
+      parameters:
+      - name: supplierId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Products returned
+    post:
+      operationId: createProduct
+      summary: Create Product
+      description: Create a new product specification record.
+      tags:
+      - Products
+      security:
+      - ApiKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductInput'
+      responses:
+        '201':
+          description: Product created
+components:
+  schemas:
+    ProductInput:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        supplierId:
+          type: string
+        sku:
+          type: string
+      required:
+      - name
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      in: header
+      name: X-API-KEY
