@@ -11,7 +11,20 @@ description: >-
   Both APIs require X-API-KEY authentication. The platform serves food manufacturers, retailers, restaurants, and
   distributors across the global food supply chain.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: enterprise
+  onboarding: self-serve
+  trial: true
+  try_now: true
+  public: false
+  label: Enterprise (free trial) · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/trustwell.png
 tags:
 - Food Industry
 - Food Safety
@@ -44,41 +57,14 @@ apis:
   - url: graphql/trustwell-graphql.md
     type: GraphQL
   description: >-
-    The Trustwell Genesis Foods GraphQL API provides programmatic access to food formulation, nutrition analysis, and
-    label generation capabilities. The GraphQL endpoint at api.trustwell.com/genesis supports 16 query types (foods,
-    labels, nutrients, allergens, products, suppliers, regulations, documents, and more), 6 mutation categories (foods
-    with 50+ sub-operations, label, documents, products, suppliers, tags), and 2 subscription types (documentEvents,
-    tenantEvents) for real-time monitoring. The API supports 600+ schema types covering US, Canadian, EU, Mexican, and
-    Australian/New Zealand regulatory standards for nutrition labeling. Authentication uses the X-API-KEY header. The
-    API connects nutrition analysis data to ERP, PLM, POS, and website systems.
-- aid: trustwell:trustwell-foodlogiq-api
-  name: Trustwell FoodLogiQ API
-  tags:
-  - Food Safety
-  - Supply Chain
-  - Traceability
-  - Compliance
-  - Quality Management
-  - Recall Management
-  - Food Industry
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  baseURL: https://api.trustwell.com/foodlogiq
-  humanURL: https://www.trustwell.com/products/foodlogiq/
-  properties:
-  - url: https://www.trustwell.com/products/foodlogiq/
-    type: Documentation
-  - url: https://www.trustwell.com/products/foodlogiq/product-management/
-    type: Documentation
-  - url: >-
-      https://raw.githubusercontent.com/api-evangelist/trustwell/refs/heads/main/openapi/trustwell-foodlogiq-openapi.yml
-    type: OpenAPI
-  description: >-
-    The Trustwell FoodLogiQ API is an open REST API that enables enterprise food brands to integrate supply chain data
-    with their existing systems. The API supports supplier relationship management, compliance documentation, quality
-    incident management, product specification management, FSMA 204-compliant traceability (farm-to-fork tracking),
-    and recall management workflows. The Q3 2025 release introduced role-based API tokens with scoped permissions for
-    fine-grained access control. The API is documented within the FoodLogiQ Connect platform Resource Center and
-    supports integration with ERP, WMS, and third-party food safety systems.
+    The Trustwell Genesis Foods GraphQL API provides programmatic access to food formulation, nutrition
+    analysis, and label generation capabilities. The GraphQL endpoint at api.trustwell.com/genesis supports
+    16 query types (foods, labels, nutrients, allergens, products, suppliers, regulations, documents,
+    and more), 6 mutation categories (foods with 50+ sub-operations, label, documents, products, suppliers,
+    tags), and 2 subscription types (documentEvents, tenantEvents) for real-time monitoring. The API supports
+    600+ schema types covering US, Canadian, EU, Mexican, and Australian/New Zealand regulatory standards
+    for nutrition labeling. Authentication uses the X-API-KEY header. The API connects nutrition analysis
+    data to ERP, PLM, POS, and website systems.
 - aid: trustwell:trustwell-genesis-supplements-api
   name: Trustwell Genesis Supplements API
   tags:
@@ -95,10 +81,95 @@ apis:
   - url: https://docs.trustwell.com/genesis/api/
     type: Documentation
   description: >-
-    The Trustwell Genesis Supplements API provides formulation and regulatory compliance capabilities for dietary
-    supplement manufacturers. Built on the same Genesis Foods GraphQL endpoint, it supports Supplement Facts label
-    generation, ingredient declaration, allergen statements, and compliance with FDA dietary supplement regulations.
-    The API enables integration of supplement formulation data into ERP and PLM systems.
+    The Trustwell Genesis Supplements API provides formulation and regulatory compliance capabilities
+    for dietary supplement manufacturers. Built on the same Genesis Foods GraphQL endpoint, it supports
+    Supplement Facts label generation, ingredient declaration, allergen statements, and compliance with
+    FDA dietary supplement regulations. The API enables integration of supplement formulation data into
+    ERP and PLM systems.
+- aid: trustwell:trustwell-compliance-api
+  name: Trustwell Compliance API
+  description: Compliance documentation and requirements
+  humanURL: https://docs.trustwell.com/genesis/api/
+  baseURL: https://api.trustwell.com/genesis
+  tags:
+  - Compliance
+  properties:
+  - type: OpenAPI
+    url: openapi/trustwell-compliance-api-openapi.yml
+  - type: Documentation
+    url: https://www.trustwell.com/products/foodlogiq/
+  - type: Documentation
+    url: https://www.trustwell.com/products/foodlogiq/product-management/
+- aid: trustwell:trustwell-products-api
+  name: Trustwell Products API
+  description: Product specification management
+  humanURL: https://docs.trustwell.com/genesis/api/
+  baseURL: https://api.trustwell.com/genesis
+  tags:
+  - Products
+  properties:
+  - type: OpenAPI
+    url: openapi/trustwell-products-api-openapi.yml
+  - type: Documentation
+    url: https://www.trustwell.com/products/foodlogiq/
+  - type: Documentation
+    url: https://www.trustwell.com/products/foodlogiq/product-management/
+- aid: trustwell:trustwell-quality-api
+  name: Trustwell Quality API
+  description: Quality incident management
+  humanURL: https://docs.trustwell.com/genesis/api/
+  baseURL: https://api.trustwell.com/genesis
+  tags:
+  - Quality
+  properties:
+  - type: OpenAPI
+    url: openapi/trustwell-quality-api-openapi.yml
+  - type: Documentation
+    url: https://www.trustwell.com/products/foodlogiq/
+  - type: Documentation
+    url: https://www.trustwell.com/products/foodlogiq/product-management/
+- aid: trustwell:trustwell-recalls-api
+  name: Trustwell Recalls API
+  description: Recall and withdrawal management
+  humanURL: https://docs.trustwell.com/genesis/api/
+  baseURL: https://api.trustwell.com/genesis
+  tags:
+  - Recalls
+  properties:
+  - type: OpenAPI
+    url: openapi/trustwell-recalls-api-openapi.yml
+  - type: Documentation
+    url: https://www.trustwell.com/products/foodlogiq/
+  - type: Documentation
+    url: https://www.trustwell.com/products/foodlogiq/product-management/
+- aid: trustwell:trustwell-suppliers-api
+  name: Trustwell Suppliers API
+  description: Supplier relationship management
+  humanURL: https://docs.trustwell.com/genesis/api/
+  baseURL: https://api.trustwell.com/genesis
+  tags:
+  - Suppliers
+  properties:
+  - type: OpenAPI
+    url: openapi/trustwell-suppliers-api-openapi.yml
+  - type: Documentation
+    url: https://www.trustwell.com/products/foodlogiq/
+  - type: Documentation
+    url: https://www.trustwell.com/products/foodlogiq/product-management/
+- aid: trustwell:trustwell-traceability-api
+  name: Trustwell Traceability API
+  description: Farm-to-fork traceability (FSMA 204)
+  humanURL: https://docs.trustwell.com/genesis/api/
+  baseURL: https://api.trustwell.com/genesis
+  tags:
+  - Traceability
+  properties:
+  - type: OpenAPI
+    url: openapi/trustwell-traceability-api-openapi.yml
+  - type: Documentation
+    url: https://www.trustwell.com/products/foodlogiq/
+  - type: Documentation
+    url: https://www.trustwell.com/products/foodlogiq/product-management/
 common:
 - type: AgenticAccess
   url: agentic-access/trustwell-agentic-access.yml
