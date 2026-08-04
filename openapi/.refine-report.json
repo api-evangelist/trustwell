@@ -1,0 +1,24 @@
+{
+  "provider": "trustwell",
+  "sources": [
+    "trustwell-compliance-api-openapi.yml",
+    "trustwell-products-api-openapi.yml",
+    "trustwell-quality-api-openapi.yml",
+    "trustwell-recalls-api-openapi.yml",
+    "trustwell-suppliers-api-openapi.yml",
+    "trustwell-traceability-api-openapi.yml"
+  ],
+  "outputs": [
+    "trustwell-compliance-api-openapi.yml",
+    "trustwell-products-api-openapi.yml",
+    "trustwell-quality-api-openapi.yml",
+    "trustwell-recalls-api-openapi.yml",
+    "trustwell-suppliers-api-openapi.yml",
+    "trustwell-traceability-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
