@@ -1,0 +1,91 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Trustwell FoodLogiQ Compliance Traceability API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Traceability",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Lots",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trustwell.com/foodlogiq/v1/traceability/lots",
+            "params": [
+              {
+                "name": "productId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "supplierId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fromDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "toDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-KEY",
+              "value": "{{X-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve traceability lot records for FSMA 204 compliance."
+        },
+        {
+          "info": {
+            "name": "Get Lot",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trustwell.com/foodlogiq/v1/traceability/lots/:lotId",
+            "params": [
+              {
+                "name": "lotId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-KEY",
+              "value": "{{X-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve traceability details for a specific lot."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

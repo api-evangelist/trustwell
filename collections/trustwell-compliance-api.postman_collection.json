@@ -1,0 +1,165 @@
+{
+  "item": [
+    {
+      "id": "43bf7586-2ed7-4f97-b0c2-6996acd0993f",
+      "name": "Compliance",
+      "description": {
+        "content": "Compliance documentation and requirements",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "24dcf0b3-6476-49dd-9a15-28783bf75d83",
+          "name": "List Compliance Documents",
+          "request": {
+            "name": "List Compliance Documents",
+            "description": {
+              "content": "Retrieve compliance documents submitted by suppliers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "compliance",
+                "documents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "supplierId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "documentType",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d99e5962-1ede-4b22-8832-1cffd58ee39f",
+              "name": "Compliance documents returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "compliance",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "supplierId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "documentType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.trustwell.com/foodlogiq/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8a51b451-c2c4-4b0e-a680-0cf9912703cf",
+    "name": "Trustwell FoodLogiQ Compliance API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Open REST API for food supply chain management, compliance, quality assurance, traceability (FSMA 204), and recall management. Enables enterprise food brands to integrate supply chain data with ERP, WMS, and third-party systems.",
+      "type": "text/plain"
+    }
+  }
+}

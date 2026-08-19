@@ -1,0 +1,278 @@
+{
+  "item": [
+    {
+      "id": "55270ee9-6c78-45b4-b78c-0a8729df8c54",
+      "name": "Traceability",
+      "description": {
+        "content": "Farm-to-fork traceability (FSMA 204)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "01f41ce4-ed2f-4a11-91e3-38db9e880cb3",
+          "name": "List Lots",
+          "request": {
+            "name": "List Lots",
+            "description": {
+              "content": "Retrieve traceability lot records for FSMA 204 compliance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "traceability",
+                "lots"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "productId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "supplierId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "fromDate",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "toDate",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b42cb722-5992-4b1d-8cbb-50777d8454d5",
+              "name": "Lot records returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traceability",
+                    "lots"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "productId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "supplierId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fromDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "toDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f6c9e945-b853-4d97-ab1c-5550c266593a",
+          "name": "Get Lot",
+          "request": {
+            "name": "Get Lot",
+            "description": {
+              "content": "Retrieve traceability details for a specific lot.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "traceability",
+                "lots",
+                ":lotId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lotId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b714e223-493f-4342-b022-c6efc283cb0f",
+              "name": "Lot details returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traceability",
+                    "lots",
+                    ":lotId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lotId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.trustwell.com/foodlogiq/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "597416a6-6525-40ae-a13b-798ae800da93",
+    "name": "Trustwell FoodLogiQ Compliance Traceability API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Open REST API for food supply chain management, compliance, quality assurance, traceability (FSMA 204), and recall management. Enables enterprise food brands to integrate supply chain data with ERP, WMS, and third-party systems.",
+      "type": "text/plain"
+    }
+  }
+}

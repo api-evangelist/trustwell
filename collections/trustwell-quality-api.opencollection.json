@@ -1,0 +1,107 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Trustwell FoodLogiQ Compliance Quality API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Quality",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Quality Incidents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trustwell.com/foodlogiq/v1/quality/incidents",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "supplierId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-KEY",
+              "value": "{{X-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve quality incidents with filtering options."
+        },
+        {
+          "info": {
+            "name": "Create Quality Incident",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trustwell.com/foodlogiq/v1/quality/incidents",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-KEY",
+              "value": "{{X-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a new quality incident report."
+        },
+        {
+          "info": {
+            "name": "Get Quality Incident",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trustwell.com/foodlogiq/v1/quality/incidents/:incidentId",
+            "params": [
+              {
+                "name": "incidentId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-KEY",
+              "value": "{{X-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve details for a specific quality incident."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
