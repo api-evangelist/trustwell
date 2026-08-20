@@ -106,6 +106,8 @@ apis:
   humanURL: https://docs.trustwell.com/genesis/api/
   baseURL: https://api.trustwell.com/genesis
   tags:
+  - Product
+  tags_raw:
   - Products
   properties:
   - type: OpenAPI
