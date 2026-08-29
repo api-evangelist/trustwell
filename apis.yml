@@ -185,6 +185,9 @@ apis:
   - type: Documentation
     url: https://www.trustwell.com/products/foodlogiq/product-management/
 common:
+- type: CapabilityMap
+  url: capabilities/trustwell-capability-edges.yml
+  name: Trustwell Business Capability Map
 - type: AgenticAccess
   url: agentic-access/trustwell-agentic-access.yml
 - type: TrustCenter
