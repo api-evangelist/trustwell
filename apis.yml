@@ -11,6 +11,18 @@ description: >-
   Both APIs require X-API-KEY authentication. The platform serves food manufacturers, retailers, restaurants, and
   distributors across the global food supply chain.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: enterprise
   onboarding: self-serve
