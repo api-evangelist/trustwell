@@ -11,7 +11,7 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 2
+edge_count: 3
 edges:
 - tag: Suppliers
   spec_file: trustwell-suppliers-api-openapi.yml
@@ -35,3 +35,14 @@ edges:
   reason: Operations create and retrieve quality incidents, which is quality management (incident/non-conformance
     capture) for food products. Ambiguous between quality control and non-conformance sub-capabilities,
     so only the L1 is asserted.
+- tag: Recalls
+  spec_file: trustwell-recalls-api-openapi.yml
+  capability_id: BC-720
+  capability_id_l1: BC-720
+  capability_name: Quality Management
+  confidence: 0.7
+  evidence: '"List Recalls", "Create Recall", schema "RecallInput"; platform covers "traceability (FSMA
+    204), and recall management"'
+  reason: Product recall creation and tracking is field/product quality management. Mapping only at L1
+    because recall management does not map cleanly to a single listed sub-capability.
+  recovered_from: vertical-healthcare-providers-edges.json
