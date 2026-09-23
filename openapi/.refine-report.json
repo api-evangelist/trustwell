@@ -1,12 +1,7 @@
 {
   "provider": "trustwell",
   "sources": [
-    "trustwell-compliance-api-openapi.yml",
-    "trustwell-products-api-openapi.yml",
-    "trustwell-quality-api-openapi.yml",
-    "trustwell-recalls-api-openapi.yml",
-    "trustwell-suppliers-api-openapi.yml",
-    "trustwell-traceability-api-openapi.yml"
+    "_original/trustwell-foodlogiq-openapi.yml"
   ],
   "outputs": [
     "trustwell-compliance-api-openapi.yml",
@@ -19,6 +14,17 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "trustwell-foodlogiq-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "trustwell-compliance-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trustwell-products-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trustwell-quality-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trustwell-recalls-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trustwell-suppliers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trustwell-traceability-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Trustwell FoodLogiQ Compliance Suppliers API
+  title: Trustwell FoodLogiQ Suppliers API
   description: Open REST API for food supply chain management, compliance, quality assurance, traceability (FSMA 204), and recall management. Enables enterprise food brands to integrate supply chain data with ERP, WMS, and third-party systems.
   version: 1.0.0
   contact:
@@ -123,29 +123,6 @@ paths:
           description: Supplier updated
 components:
   schemas:
-    SupplierListResponse:
-      type: object
-      properties:
-        suppliers:
-          type: array
-          items:
-            $ref: '#/components/schemas/Supplier'
-        total:
-          type: integer
-        page:
-          type: integer
-    SupplierInput:
-      type: object
-      properties:
-        name:
-          type: string
-        email:
-          type: string
-          format: email
-        countryCode:
-          type: string
-      required:
-      - name
     Supplier:
       type: object
       properties:
@@ -170,6 +147,29 @@ components:
         updatedAt:
           type: string
           format: date-time
+    SupplierListResponse:
+      type: object
+      properties:
+        suppliers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Supplier'
+        total:
+          type: integer
+        page:
+          type: integer
+    SupplierInput:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        countryCode:
+          type: string
+      required:
+      - name
   securitySchemes:
     ApiKey:
       type: apiKey

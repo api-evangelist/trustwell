@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Trustwell FoodLogiQ Compliance Quality API
+  title: Trustwell FoodLogiQ Quality API
   description: Open REST API for food supply chain management, compliance, quality assurance, traceability (FSMA 204), and recall management. Enables enterprise food brands to integrate supply chain data with ERP, WMS, and third-party systems.
   version: 1.0.0
   contact:
@@ -102,6 +102,15 @@ paths:
           description: Quality incident returned
 components:
   schemas:
+    QualityIncidentListResponse:
+      type: object
+      properties:
+        incidents:
+          type: array
+          items:
+            $ref: '#/components/schemas/QualityIncident'
+        total:
+          type: integer
     QualityIncident:
       type: object
       properties:
@@ -152,15 +161,6 @@ components:
       required:
       - title
       - severity
-    QualityIncidentListResponse:
-      type: object
-      properties:
-        incidents:
-          type: array
-          items:
-            $ref: '#/components/schemas/QualityIncident'
-        total:
-          type: integer
   securitySchemes:
     ApiKey:
       type: apiKey
