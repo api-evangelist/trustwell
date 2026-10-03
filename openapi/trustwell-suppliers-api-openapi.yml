@@ -123,6 +123,29 @@ paths:
           description: Supplier updated
 components:
   schemas:
+    SupplierInput:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        countryCode:
+          type: string
+      required:
+      - name
+    SupplierListResponse:
+      type: object
+      properties:
+        suppliers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Supplier'
+        total:
+          type: integer
+        page:
+          type: integer
     Supplier:
       type: object
       properties:
@@ -147,29 +170,6 @@ components:
         updatedAt:
           type: string
           format: date-time
-    SupplierListResponse:
-      type: object
-      properties:
-        suppliers:
-          type: array
-          items:
-            $ref: '#/components/schemas/Supplier'
-        total:
-          type: integer
-        page:
-          type: integer
-    SupplierInput:
-      type: object
-      properties:
-        name:
-          type: string
-        email:
-          type: string
-          format: email
-        countryCode:
-          type: string
-      required:
-      - name
   securitySchemes:
     ApiKey:
       type: apiKey

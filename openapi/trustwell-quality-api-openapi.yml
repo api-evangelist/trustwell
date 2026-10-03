@@ -102,6 +102,15 @@ paths:
           description: Quality incident returned
 components:
   schemas:
+    QualityIncidentListResponse:
+      type: object
+      properties:
+        incidents:
+          type: array
+          items:
+            $ref: '#/components/schemas/QualityIncident'
+        total:
+          type: integer
     QualityIncident:
       type: object
       properties:
@@ -152,15 +161,6 @@ components:
       required:
       - title
       - severity
-    QualityIncidentListResponse:
-      type: object
-      properties:
-        incidents:
-          type: array
-          items:
-            $ref: '#/components/schemas/QualityIncident'
-        total:
-          type: integer
   securitySchemes:
     ApiKey:
       type: apiKey
