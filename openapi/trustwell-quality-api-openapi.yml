@@ -102,15 +102,25 @@ paths:
           description: Quality incident returned
 components:
   schemas:
-    QualityIncidentListResponse:
+    QualityIncidentInput:
       type: object
       properties:
-        incidents:
-          type: array
-          items:
-            $ref: '#/components/schemas/QualityIncident'
-        total:
-          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        severity:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+          - critical
+        supplierId:
+          type: string
+      required:
+      - title
+      - severity
     QualityIncident:
       type: object
       properties:
@@ -142,25 +152,15 @@ components:
         resolvedAt:
           type: string
           format: date-time
-    QualityIncidentInput:
+    QualityIncidentListResponse:
       type: object
       properties:
-        title:
-          type: string
-        description:
-          type: string
-        severity:
-          type: string
-          enum:
-          - low
-          - medium
-          - high
-          - critical
-        supplierId:
-          type: string
-      required:
-      - title
-      - severity
+        incidents:
+          type: array
+          items:
+            $ref: '#/components/schemas/QualityIncident'
+        total:
+          type: integer
   securitySchemes:
     ApiKey:
       type: apiKey

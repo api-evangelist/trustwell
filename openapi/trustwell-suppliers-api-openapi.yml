@@ -123,6 +123,17 @@ paths:
           description: Supplier updated
 components:
   schemas:
+    SupplierListResponse:
+      type: object
+      properties:
+        suppliers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Supplier'
+        total:
+          type: integer
+        page:
+          type: integer
     SupplierInput:
       type: object
       properties:
@@ -135,17 +146,6 @@ components:
           type: string
       required:
       - name
-    SupplierListResponse:
-      type: object
-      properties:
-        suppliers:
-          type: array
-          items:
-            $ref: '#/components/schemas/Supplier'
-        total:
-          type: integer
-        page:
-          type: integer
     Supplier:
       type: object
       properties:
