@@ -1,4 +1,4 @@
-# Trustwell (trustwell)
+# Trustwell
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,113 +66,179 @@
 
 Trustwell is a food industry software company formed from the merger of ESHA Research and FoodLogiQ in 2023, providing the food and beverage industry with an integrated platform covering product formulation, nutrition labeling, regulatory compliance, supply chain management, traceability, quality assurance, and recall management. The Trustwell Connect Platform offers two primary APIs: the Genesis Foods GraphQL API for nutrition analysis, food formulation, and label generation (with support for US, Canadian, EU, Mexican, and Australian regulatory standards), and the FoodLogiQ API for supply chain visibility, compliance management, supplier relationships, and FSMA 204-compliant traceability. Both APIs require X-API-KEY authentication. The platform serves food manufacturers, retailers, restaurants, and distributors across the global food supply chain.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/trustwell/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/trustwell/refs/heads/main/apis.yml)
+**Areas:** Food Industry · Food Safety · Nutrition · Supply Chain · Food Labeling · Traceability · Compliance · Food Technology
 
-## Scope
+## Trustwell on APIs.io
 
-- **Type:** Index
-- **Access:** 3rd-Party
+Everything profiled for Trustwell is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/trustwell/](https://apis.io/providers/trustwell/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (8)
 
-- Food Industry
-- Food Safety
-- Nutrition
-- Supply Chain
-- Food Labeling
-- Traceability
-- Compliance
-- Food Technology
+- [Trustwell Genesis Foods GraphQL API](https://apis.io/apis/trustwell/trustwell-genesis-foods-graphql-api/) — The Trustwell Genesis Foods GraphQL API provides programmatic access to food formulation, nutrition analysis, and label generation capabilities. The GraphQL…
+- [Trustwell Genesis Supplements API](https://apis.io/apis/trustwell/trustwell-genesis-supplements-api/) — The Trustwell Genesis Supplements API provides formulation and regulatory compliance capabilities for dietary supplement manufacturers. Built on the same…
+- [Trustwell Compliance API](https://apis.io/apis/trustwell/trustwell-compliance-api/) — Compliance documentation and requirements
+- [Trustwell Products API](https://apis.io/apis/trustwell/trustwell-products-api/) — Product specification management
+- [Trustwell Quality API](https://apis.io/apis/trustwell/trustwell-quality-api/) — Quality incident management
+- [Trustwell Recalls API](https://apis.io/apis/trustwell/trustwell-recalls-api/) — Recall and withdrawal management
+- [Trustwell Suppliers API](https://apis.io/apis/trustwell/trustwell-suppliers-api/) — Supplier relationship management
+- [Trustwell Traceability API](https://apis.io/apis/trustwell/trustwell-traceability-api/) — Farm-to-fork traceability (FSMA 204)
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-16
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### GraphQL (1)
 
-### Trustwell Genesis Foods GraphQL API
+GraphQL schemas.
 
-The Trustwell Genesis Foods GraphQL API provides programmatic access to food formulation, nutrition analysis, and label generation capabilities. The GraphQL endpoint at api.trustwell.com/genesis supports 16 query types (foods, labels, nutrients, allergens, products, suppliers, regulations, documents, and more), 6 mutation categories (foods with 50+ sub-operations, label, documents, products, suppliers, tags), and 2 subscription types (documentEvents, tenantEvents) for real-time monitoring. The API supports 600+ schema types covering US, Canadian, EU, Mexican, and Australian/New Zealand regulatory standards for nutrition labeling. Authentication uses the X-API-KEY header. The API connects nutrition analysis data to ERP, PLM, POS, and website systems.
+- [Trustwell GraphQL API](https://apis.io/graphqls/trustwell/trustwell-graphql/)
 
-- **Human URL:** [https://docs.trustwell.com/genesis/api/](https://docs.trustwell.com/genesis/api/)
-- **Base URL:** `https://api.trustwell.com/genesis`
+#### Agentic access (1)
 
-#### Tags
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- Food Formulation
-- Nutrition Labeling
-- Regulatory Compliance
-- Food Industry
+- [Trustwell Agentic Access](https://apis.io/agentic-access/trustwell/trustwell-agentic-access/)
 
-#### Properties
+#### JSON Schema (4)
 
-- [Documentation](https://docs.trustwell.com/genesis/api/)
-- [Documentation](https://www.trustwell.com/products/genesis/food-formulation-and-labeling/)
-- [Postman Collection](collections/trustwell-foodlogiq.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/trustwell-foodlogiq.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+The data models the API reads and writes.
 
-### Trustwell FoodLogiQ API
+- [FoodItem](https://apis.io/schemas/trustwell/trustwell-food-item/)
+- [QualityIncident](https://apis.io/schemas/trustwell/trustwell-quality-incident/)
+- [Recall](https://apis.io/schemas/trustwell/trustwell-recall/)
+- [Supplier](https://apis.io/schemas/trustwell/trustwell-supplier/)
 
-The Trustwell FoodLogiQ API is an open REST API that enables enterprise food brands to integrate supply chain data with their existing systems. The API supports supplier relationship management, compliance documentation, quality incident management, product specification management, FSMA 204-compliant traceability (farm-to-fork tracking), and recall management workflows. The Q3 2025 release introduced role-based API tokens with scoped permissions for fine-grained access control. The API is documented within the FoodLogiQ Connect platform Resource Center and supports integration with ERP, WMS, and third-party food safety systems.
+#### JSON Structure (2)
 
-- **Human URL:** [https://www.trustwell.com/products/foodlogiq/](https://www.trustwell.com/products/foodlogiq/)
-- **Base URL:** `https://api.trustwell.com/foodlogiq`
+Data models expressed in JSON Structure.
 
-#### Tags
+- [Trustwell Food Item Structure](https://apis.io/json-structure/trustwell/trustwell-food-item-structure/)
+- [Trustwell Supplier Structure](https://apis.io/json-structure/trustwell/trustwell-supplier-structure/)
 
-- Food Safety
-- Supply Chain
-- Traceability
-- Compliance
-- Quality Management
-- Recall Management
-- Food Industry
+#### JSON-LD (1)
 
-#### Properties
+Linked-data contexts for the provider's vocabulary.
 
-- [Documentation](https://www.trustwell.com/products/foodlogiq/)
-- [Documentation](https://www.trustwell.com/products/foodlogiq/product-management/)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/trustwell/refs/heads/main/openapi/trustwell-foodlogiq-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/trustwell-foodlogiq.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/trustwell-foodlogiq.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Trustwell Context](https://apis.io/jsonld/trustwell/trustwell-context/)
 
-### Trustwell Genesis Supplements API
+#### Vocabulary (1)
 
-The Trustwell Genesis Supplements API provides formulation and regulatory compliance capabilities for dietary supplement manufacturers. Built on the same Genesis Foods GraphQL endpoint, it supports Supplement Facts label generation, ingredient declaration, allergen statements, and compliance with FDA dietary supplement regulations. The API enables integration of supplement formulation data into ERP and PLM systems.
+The provider's domain terms, defined.
 
-- **Human URL:** [https://www.trustwell.com/products/genesis/](https://www.trustwell.com/products/genesis/)
-- **Base URL:** `https://api.trustwell.com/genesis`
+- [Trustwell Vocabulary](https://apis.io/vocabularies/trustwell/trustwell-vocabulary/)
 
-#### Tags
+#### Examples (3)
 
-- Supplement Formulation
-- Nutrition Labeling
-- Regulatory Compliance
-- Food Industry
+Example requests and responses.
 
-#### Properties
+- [Trustwell Foodlogiq Create Recall Example](https://apis.io/examples/trustwell/trustwell-foodlogiq-create-recall-example/)
+- [Trustwell Foodlogiq List Suppliers Example](https://apis.io/examples/trustwell/trustwell-foodlogiq-list-suppliers-example/)
+- [Trustwell Genesis Foods Query Example](https://apis.io/examples/trustwell/trustwell-genesis-foods-query-example/)
 
-- [Documentation](https://www.trustwell.com/products/genesis/)
-- [Documentation](https://docs.trustwell.com/genesis/api/)
-- [Postman Collection](collections/trustwell-foodlogiq.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/trustwell-foodlogiq.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Collections (7)
 
-## Common Properties
+Postman and Open Collection request collections.
+
+- [Trustwell FoodLogiQ Compliance API](https://apis.io/collections/trustwell/open-trustwell-compliance-api/)
+- [Trustwell FoodLogiQ API](https://apis.io/collections/trustwell/open-trustwell-foodlogiq/)
+- [Trustwell FoodLogiQ Compliance Products API](https://apis.io/collections/trustwell/open-trustwell-products-api/)
+- [Trustwell FoodLogiQ Compliance Quality API](https://apis.io/collections/trustwell/open-trustwell-quality-api/)
+- [Trustwell FoodLogiQ Compliance Recalls API](https://apis.io/collections/trustwell/open-trustwell-recalls-api/)
+- [Trustwell FoodLogiQ Compliance Suppliers API](https://apis.io/collections/trustwell/open-trustwell-suppliers-api/)
+- [Trustwell FoodLogiQ Compliance Traceability API](https://apis.io/collections/trustwell/open-trustwell-traceability-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Trustwell — jsonschema rules](https://apis.io/rules/trustwell/trustwell-jsonschema-spectral-rules/)
+- [Trustwell API Rules](https://apis.io/rules/trustwell/trustwell-rules/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Trustwell Authentication](https://apis.io/security/trustwell/trustwell-authentication/)
+- [Trustwell Domain Security](https://apis.io/security/trustwell/trustwell-domain-security/)
+- [Trustwell Trust Center](https://apis.io/security/trustwell/trustwell-trust-center/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Trustwell Plans Pricing](https://apis.io/plans/trustwell/trustwell-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Trustwell Rate Limits](https://apis.io/rate-limits/trustwell/trustwell-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Trustwell Finops](https://apis.io/finops/trustwell/trustwell-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.trustwell.com/)
 - [Documentation](https://docs.trustwell.com/)
-- [Documentation](https://docs.trustwell.com/genesis/api/)
-- [Portal](https://www.trustwell.com/platform/)
-- [Products](https://www.trustwell.com/products/)
 - [Blog](https://blog.trustwell.com/)
-- [News](https://www.trustwell.com/news-and-press/)
-- [Privacy Policy](https://www.trustwell.com/privacy-policy/)
-- [Terms of Service](https://www.trustwell.com/terms-of-service/)
-- [LinkedIn](https://www.linkedin.com/company/trustwell-llc)
-- [Spectral Rules](https://raw.githubusercontent.com/api-evangelist/trustwell/refs/heads/main/rules/trustwell-rules.yml)
+- [Terms of service](https://www.trustwell.com/terms-of-service/)
+- [Privacy policy](https://www.trustwell.com/privacy-policy/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 37.5** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 67.9 |
+| Contract quality | 53.6 |
+| Contract governance | 13.6 |
+| Operational transparency | 5.3 |
+| Developer ergonomics | 33.3 |
+| Access clarity | 34.2 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 29.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/trustwell/](https://apis.io/providers/trustwell/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Trustwell: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/trustwell/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
