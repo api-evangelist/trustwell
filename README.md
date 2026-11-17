@@ -66,7 +66,7 @@
 
 Trustwell is a food industry software company formed from the merger of ESHA Research and FoodLogiQ in 2023, providing the food and beverage industry with an integrated platform covering product formulation, nutrition labeling, regulatory compliance, supply chain management, traceability, quality assurance, and recall management. The Trustwell Connect Platform offers two primary APIs: the Genesis Foods GraphQL API for nutrition analysis, food formulation, and label generation (with support for US, Canadian, EU, Mexican, and Australian regulatory standards), and the FoodLogiQ API for supply chain visibility, compliance management, supplier relationships, and FSMA 204-compliant traceability. Both APIs require X-API-KEY authentication. The platform serves food manufacturers, retailers, restaurants, and distributors across the global food supply chain.
 
-**Areas:** Food Industry · Food Safety · Nutrition · Supply Chain · Food Labeling · Traceability · Compliance · Food Technology
+**Areas:** Food Industry · Food Safety · Nutrition · Supply Chain · Food Labeling · Traceability · Compliance · Food Technology · Quality Management · Recall · AI
 
 ## Trustwell on APIs.io
 
@@ -99,14 +99,20 @@ Which operations an agent can call, which act, and which need a human in the loo
 
 - [Trustwell Agentic Access](https://apis.io/agentic-access/trustwell/trustwell-agentic-access/)
 
-#### JSON Schema (4)
+#### JSON Schema (10)
 
 The data models the API reads and writes.
 
 - [FoodItem](https://apis.io/schemas/trustwell/trustwell-food-item/)
+- [ProductInput](https://apis.io/schemas/trustwell/trustwell-product-input/)
 - [QualityIncident](https://apis.io/schemas/trustwell/trustwell-quality-incident/)
+- [QualityIncidentInput](https://apis.io/schemas/trustwell/trustwell-quality-incident-input/)
+- [QualityIncidentListResponse](https://apis.io/schemas/trustwell/trustwell-quality-incident-list-response/)
 - [Recall](https://apis.io/schemas/trustwell/trustwell-recall/)
+- [RecallInput](https://apis.io/schemas/trustwell/trustwell-recall-input/)
 - [Supplier](https://apis.io/schemas/trustwell/trustwell-supplier/)
+- [SupplierInput](https://apis.io/schemas/trustwell/trustwell-supplier-input/)
+- [SupplierListResponse](https://apis.io/schemas/trustwell/trustwell-supplier-list-response/)
 
 #### JSON Structure (2)
 
@@ -186,13 +192,18 @@ Links to the company's own pages. This repository publishes no copy of their spe
 
 - [Website](https://www.trustwell.com/)
 - [Documentation](https://docs.trustwell.com/)
+- [Getting started](https://www.trustwell.com/get-started/)
+- [Sign up](https://www.trustwell.com/sign-up/)
+- [Support](https://www.trustwell.com/support/)
 - [Blog](https://blog.trustwell.com/)
+- [Compliance](https://trust.trustwell.com/)
 - [Terms of service](https://www.trustwell.com/terms-of-service/)
 - [Privacy policy](https://www.trustwell.com/privacy-policy/)
+- [Status](https://status.trustwell.com/)
 
 ## API Evangelist rating
 
-**Kin Score 37.5** — thin · rubric 0.24.0 · scored 2026-10-17
+**Kin Score 37.5** — thin · rubric 0.25.0 · scored 2026-10-23
 
 | Facet | Score |
 |---|---|
@@ -203,7 +214,7 @@ Links to the company's own pages. This repository publishes no copy of their spe
 | Developer ergonomics | 33.3 |
 | Access clarity | 34.2 |
 
-**Agent readiness 17.9** — agent-aware
+**Agent readiness 19.6** — agent-aware
 
 | Agent-readiness dimension | Result |
 |---|---|
@@ -226,6 +237,8 @@ Links to the company's own pages. This repository publishes no copy of their spe
 | Protected Resource Metadata | — |
 | Dynamic Client Registration | — |
 | Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
 
 **Regulatory alignment 29.4** — Horizontal (data, software, accessibility, platform)
 
